@@ -17,3 +17,13 @@ export const setCounter: ActionCreator<SetCounterAction> = (newCount: number) =>
     }
   } as SetCounterAction;
 }
+
+export const SET_COUNTER_2 = "SET_COUNTER_2";
+export function setCounter2(newCount: number): SetCounterAction {
+  return {
+    type: SET_COUNTER_2,
+    payload: {
+      counter: newCount,
+    }
+  };
+}
