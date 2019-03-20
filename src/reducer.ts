@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { SET_COUNTER, SetCounterAction, SET_COUNTER_2 } from "./actions";
+import { CounterAction } from "./actions";
 
 export interface AppState {
   counter: number;
@@ -11,18 +11,18 @@ const intialState: AppState = {
   counter2: 100,
 }
 
-const counterReducer: Reducer<AppState, Action> = (state = intialState, action: Action) => {
+const counterReducer: Reducer<AppState, CounterAction> = (state = intialState, action: CounterAction) => {
   switch (action.type) {
-    case SET_COUNTER:
+    case "set-counter-1":
       return {
         ...state,
-        counter: (action as SetCounterAction).payload.counter,
+        counter: action.payload.counter,
       }
       break;
-    case SET_COUNTER_2:
+    case "set-counter-2":
       return {
         ...state,
-        counter2: (action as SetCounterAction).payload.counter,
+        counter2: action.payload.counter,
       }
       break;
 

@@ -1,29 +1,35 @@
-import { Action, ActionCreator } from "redux";
+import { ActionCreator } from "redux";
+
+export interface PayloadedAction<AType, APayload> {
+  type: AType;
+  payload: APayload;
+}
 
 interface SetCounterActionPayload {
   counter: number
 }
 
-export interface SetCounterAction extends Action {
-  payload: SetCounterActionPayload;
-}
+export interface SetCounterAction extends PayloadedAction<"set-counter-1", SetCounterActionPayload> { };
+export interface SetCounter2Action extends PayloadedAction<"set-counter-2", SetCounterActionPayload> { };
 
-export const SET_COUNTER = "SET_COUNTER";
+export type CounterAction = SetCounterAction | SetCounter2Action;
+
 export const setCounter: ActionCreator<SetCounterAction> = (newCount: number) => {
   return {
-    type: SET_COUNTER,
+    type: "set-counter-1",
     payload: {
       counter: newCount,
     }
   } as SetCounterAction;
 }
 
-export const SET_COUNTER_2 = "SET_COUNTER_2";
-export function setCounter2(newCount: number): SetCounterAction {
+export function setCounter2(newCount: number): SetCounter2Action {
   return {
-    type: SET_COUNTER_2,
+    type: "set-counter-2",
     payload: {
       counter: newCount,
     }
   };
 }
+
+
